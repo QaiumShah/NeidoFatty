@@ -1,0 +1,7 @@
+New Folder created As NewNeidoFatty in the wamp>www folder. 
+Another folder called Resources created where i can add all the functions and developing part of my website.
+Restricted the folder with .htaccess file where I said DENY all to the visitors who want to access the backhand resources.
+Then I can created a Function folder to add functions only.
+Other classes apart from joint functions are kept seperetely outside the functions folder.
+Created one class file call Dbconnect.php which will only check and connect to the database of the server.
+Created another php file nfsite_config.php which is includes all the connection of the functions and the objects of the class files.
