@@ -17,7 +17,7 @@ require_once('resources/nfsite_config.php');
 						<?php $post = $postcon->getPosts(); 
 							foreach($post as $row){ ?>
 							<tr>
-								<td><?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['content']) . '" width="290" >'; ?></td>
+								<td><?php echo '<img src="data:image/jpeg;base64,' . base64_encode($row['content']) . '" width="290" height="250" >'; ?></td>
 								<td>
 									<ul>
 										<li>Title: <?php echo $row['title']; ?></li>
@@ -26,11 +26,30 @@ require_once('resources/nfsite_config.php');
 										<li><i>Posted On <?php echo $row['postdate'];?></i></li>
 										<li>Catergory: <?php echo $row['catename'];?></li>
 										<li>Uploaded by: <?php echo $row['fullname'];?></li>
-									</ul>
-								</td>
-								<td>
-									<li><a href="admin_edit_post.php?id=<?php echo $row['postId'];?>" class="button">Edit</a></li>
-									<li><a href="delete_post.php?id=<?php echo $row['postId'];?>" class="button">Delete</a></li>	
+									</ul>								
+										<ul>
+											<li><a href="admin_edit_post.php?id=<?php echo $row['postId'];?>" class="button">Edit</a></li>
+											<li><a href="delete_post.php?id=<?php echo $row['postId'];?>" class="button">Delete</a></li>
+											<li>
+												<div class="panel-group" role="tablist">
+													<div class="panel panel-default">
+														<div id="collapseListGroupHeading1" class="panel-heading" role="tab">
+															<h4 class="panel-title">
+																<a class="collapsed" aria-controls="collapseListGroup1" aria-expanded="false" href="#collapseListGroup1" data-toggle="collapse"> Quick Edit </a>
+															</h4>
+														</div>
+													</div>
+													<div id="collapseListGroup1" class="panel-collapse collapse in" aria-labelledby="collapseListGroupHeading1" role="tabpanel" aria-expanded="true" style="">
+														<ul class="list-group">
+															<li class="list-group-item">Bootply</li>
+															<li class="list-group-item">One itmus ac facilin</li>
+															<li class="list-group-item">Second eros</li>
+														</ul>
+													</div>	
+												</div>		
+											</li>
+										</ul>		 	
+									
 								</td>
 							</tr>										
 						<?php }	?>						
@@ -52,5 +71,9 @@ require_once('resources/nfsite_config.php');
 </div>
 
 <?php include('footer.php');?>
+
+
+
+
 
 
