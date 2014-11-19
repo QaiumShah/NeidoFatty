@@ -74,7 +74,7 @@ include_once("Resources/Functions/function.php");
         } 
 			$starting = ($page-1) * 5;
 		
-		$sql = "SELECT post.postId, post.title, post.description, post.source, post.image_type, post.content, post.image_size, post.postdate, category.catename, user.fullname FROM post LEFT JOIN user ON user.userId = post.userId LEFT JOIN category on category.cateId = post.cateId ORDER BY post.postId ASC LIMIT $starting, 5";
+		$sql = "SELECT post.postId, post.title, post.description, post.source, post.image_type, post.content, post.image_size, post.postdate, category.cateId, category.catename, user.fullname FROM post LEFT JOIN user ON user.userId = post.userId LEFT JOIN category on category.cateId = post.cateId ORDER BY post.postId ASC LIMIT $starting, 5";
 		$result= $this->db->sql_Query($sql);
 		
 		$rows = array();
@@ -127,9 +127,13 @@ include_once("Resources/Functions/function.php");
 		$sql = "SELECT post.postId, post.title, post.description, post.source, post.image_type, post.content, post.image_size, post.postdate, category.catename, user.fullname FROM post LEFT JOIN user ON user.userId = post.userId LEFT JOIN category on category.cateId = post.cateId ";
 		$result= $this->db->sql_Query($sql);
 		
-		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		$rows = array();
+		while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+			
+			$rows[] = $row;
+		}
 		
-		return $row;
+		return $rows;
 	}
 
 	public function countPost($pid){
@@ -197,6 +201,32 @@ include_once("Resources/Functions/function.php");
 
 	public function updatePost(){
 	
+	}
+
+	public function searchPost($item){
+		$search = $this->db->cleanText($item);
+		$sql = "SELECT postId, title, description FROM post WHERE title LIKE '%$search%' OR description LIKE '%$search%'";
+		$sql1 = "SELECT userId, fullname FROM user WHERE fullname LIKE '%$search%'";
+		$result = $this->db->sql_Query($sql);
+		$result1 = $this->db->sql_Query($sql1);
+		$count = 0;
+		$count1 = 0;
+		$count = mysqli_num_rows($result);
+		$count1 = mysqli_num_rows($result1);
+		$rows = array();
+		if ($count == 1) {			
+			while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+				$rows[] = $row;
+			}
+		}
+		elseif ($count1 == 1) {
+			while($row = mysqli_fetch_array($result1, MYSQLI_ASSOC)){
+				$rows[] = $row;
+			}
+		}
+		
+		return $rows;
+
 	}
 
 	function deletePost($postid){

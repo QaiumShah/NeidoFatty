@@ -25,7 +25,7 @@
 				<li><a href="admin_index.php?page=LATEST" target="_self">LATEST</a></li>
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
-			<?php if(!isset($_SESSION['username'])){
+				<?php if($useract->check_Login() == false){
 						die('<li><a href="login.php">Please Login</a></li>');
 						}
 					else{?>	

@@ -11,9 +11,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$useract->Registration();
 	}
 }	
- ?>
+ 
+include('header.php');
 
-<?php include('header.php');?>
+?>
 	
 	<div class="container highlight">
 		<div class="row">

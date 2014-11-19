@@ -21,8 +21,8 @@
 			   <ul class="nav navbar-nav">
 					<li><a href="popular.php">POPULAR</a></li>
 					<li><a href="latest.php">LATEST</a></li>
-				 </ul>
-			   <ul class=" nav navbar-nav navbar-right">
+				 </ul>			  
+         <ul class=" nav navbar-nav navbar-right">
 					<li><a href="register.php"><span class="glyphicon glyphicon-cloud-upload"></span> ADD POST</a></li>
 					<li><a href="login.php" class="navbar-link">Login</a></li>
 				</ul>

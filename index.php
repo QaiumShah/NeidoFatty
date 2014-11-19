@@ -1,5 +1,7 @@
 <?php require_once('resources/nfsite_config.php');
-
+if($useract->check_Login() == true){
+		$nfsite->RedirectToURL('admin_index.php?page=1');
+	}
 include('header.php');?>
 
 <div class="container">

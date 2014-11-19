@@ -29,14 +29,15 @@ class DBconnect{
     }
  
 
-    public function sql_Multi_Queries($qry) {
-        $result = $this->connection->multi_query($qry);
-        return $result;
-    }
- 
-
     public function db_Close() {
         $this->connection->close();
+    }
+
+    public function changeInDatabase(){
+    	if(mysqli_affected_rows($this->connection)==1){
+    		return true;
+    	}
+    	return false;
     }
  
     public function cleanText($text) {
@@ -48,7 +49,13 @@ class DBconnect{
     public function lastInsertID() {
         return $this->connection->insert_id;
     }
- 
+ 	
+ 	public function numberOfRows($re){
+ 		if (mysqli_num_rows($re)==0) {
+ 		 	return true;
+ 		}
+ 		return false;
+ 	}
 	public function totalCount($fieldname, $tablename, $where = "") 
 	{
 	$q = "SELECT count(".$fieldname.") FROM "
